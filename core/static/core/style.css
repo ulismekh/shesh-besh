@@ -1,0 +1,220 @@
+@font-face {
+    font-family: 'Arkhive';
+    src: url('../fonts/Arkhive.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --red: #d32923;
+    --dark: #17110e;
+    --cream: #f5eee3;
+    --gold: #c69b55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+}
+
+
+/* HEADER */
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 110px;
+
+    padding: 0 7%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    z-index: 10;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 230px;
+    height: auto;
+    display: block;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+
+.nav a {
+    color: #f5eee3;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    color: #d32923;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 140px 7% 100px;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(10, 6, 4, 0.92) 0%,
+            rgba(10, 6, 4, 0.78) 30%,
+            rgba(10, 6, 4, 0.48) 58%,
+            rgba(10, 6, 4, 0.18) 100%
+        ),
+        url('images/hero.png') center center / cover no-repeat;
+}
+
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+    max-width: 760px;
+
+    color: #f5eee3;
+
+    margin-top: 40px;
+}
+
+.hero-subtitle {
+    font-family: 'Arkhive', sans-serif;
+
+    color: #d32923;
+
+    font-size: 26px;
+    line-height: 1.2;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-family: 'Arkhive', sans-serif;
+    color: #f5eee3;
+
+    font-size: clamp(50px, 5vw, 74px);
+    line-height: 1.02;
+
+    font-weight: normal;
+    margin-bottom: 30px;
+    max-width: 650px;
+}
+
+.hero-description {
+    max-width: 620px;
+
+    color: #ded5c9;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    margin-bottom: 42px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.primary-btn {
+    display: inline-block;
+
+    background: #d32923;
+    color: white;
+
+    padding: 17px 32px;
+
+    text-decoration: none;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    border: 1px solid #d32923;
+
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: transparent;
+    color: #f5eee3;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .header {
+        padding: 0 5%;
+    }
+
+    .logo img {
+        width: 180px;
+    }
+
+    .nav {
+        gap: 18px;
+    }
+
+    .nav a {
+        font-size: 14px;
+    }
+
+    .hero {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero h1 {
+        font-size: 65px;
+    }
+}
