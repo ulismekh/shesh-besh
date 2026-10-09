@@ -60,6 +60,127 @@
 
         </section>
 
+        <section class="menu-section" id="menu">
+            <div class="section-heading">
+                <p class="hero-subtitle">НАША КУХНЯ</p>
+                <h2>Меню</h2>
+                <p>Выберите блюдо по вкусу</p>
+            </div>
+
+            {% for category in categories %}
+                <div class="menu-category">
+                    <h3>{{ category.name }}</h3>
+
+                    {% if category.description %}
+                        <p>{{ category.description }}</p>
+                    {% endif %}
+
+                    <div class="menu-items">
+                        {% for dish in category.dishes.all %}
+                            {% if dish.is_available %}
+                                <article class="menu-item">
+                                    {% if dish.image %}
+                                        <img
+                                            src="{{ dish.image.url }}"
+                                            alt="{{ dish.name }}"
+                                        >
+                                    {% endif %}
+
+                                    <h4>{{ dish.name }}</h4>
+                                    <p>{{ dish.description }}</p>
+                                    <p class="menu-price">
+                                        {{ dish.price }} сум
+                                    </p>
+                                </article>
+                            {% endif %}
+                        {% empty %}
+                            <p>В этой категории пока нет блюд.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% empty %}
+                <p>Меню скоро появится.</p>
+            {% endfor %}
+        </section>
+
+        <section class="reviews-section" id="reviews">
+            <div class="section-heading">
+                <p class="hero-subtitle">ВАШЕ МНЕНИЕ ВАЖНО</p>
+                <h2>Отзывы гостей</h2>
+                <p>Поделитесь впечатлениями о нашей чайхане</p>
+            </div>
+
+            <div class="reviews-list">
+                {% for review in reviews %}
+                    <article class="review-card">
+                        <h3>{{ review.name }}</h3>
+
+                        <p class="review-rating">
+                            {% for star in "12345" %}
+                                {% if forloop.counter <= review.rating %}
+                                    ★
+                                {% else %}
+                                    ☆
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+
+                        <p>{{ review.text }}</p>
+                        <small>{{ review.created_at|date:"d.m.Y" }}</small>
+                    </article>
+                {% empty %}
+                    <p class="empty-reviews">
+                        Пока отзывов нет. Будьте первым!
+                    </p>
+                {% endfor %}
+            </div>
+
+            <div class="review-form">
+                <h3>Оставить отзыв</h3>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <p>
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </p>
+
+                    <div class="rating-field">
+                        <label>Ваша оценка</label>
+
+                        <div class="star-rating">
+                            {% for value in "54321" %}
+                                <input
+                                    type="radio"
+                                    id="star{{ value }}"
+                                    name="rating"
+                                    value="{{ value }}"
+                                    required
+                                >
+                                <label for="star{{ value }}" title="{{ value }} из 5">
+                                    ★
+                                </label>
+                            {% endfor %}
+                        </div>
+
+                        {{ form.rating.errors }}
+                    </div>
+
+                    <p>
+                        {{ form.text.label_tag }}
+                        {{ form.text }}
+                        {{ form.text.errors }}
+                    </p>
+
+                    <button type="submit" class="primary-btn">
+                        Отправить отзыв
+                    </button>
+                </form>
+            </div>
+        </section>
+
     </main>
 
 </body>
