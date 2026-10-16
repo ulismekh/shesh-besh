@@ -19,19 +19,19 @@
         </a>
 
         <nav class="nav">
-            <a href="#">Главная</a>
-            <a href="#">О нас</a>
-            <a href="#">Меню</a>
-            <a href="#">Галерея</a>
-            <a href="#">Отзывы</a>
-            <a href="#">Контакты</a>
+            <a href="#home">Главная</a>
+            <a href="#about">О нас</a>
+            <a href="#menu">Меню</a>
+            <a href="#gallery">Галерея</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#contacts">Контакты</a>
         </nav>
     </header>
 
 
     <main>
 
-        <section class="hero">
+        <section class="hero" id="home">
 
             <div class="hero-content">
 
@@ -51,7 +51,7 @@
                 </p>
 
                 <div class="hero-buttons">
-                    <a href="#" class="primary-btn">
+                    <a href="#menu" class="primary-btn">
                         Посмотреть меню
                     </a>
                 </div>
@@ -101,6 +101,88 @@
             {% empty %}
                 <p>Меню скоро появится.</p>
             {% endfor %}
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <p class="hero-subtitle">НАША ИСТОРИЯ</p>
+
+                <h2>Больше, чем просто чайхана</h2>
+
+                <p>
+                    «Шеш Беш» — место, где встречаются традиции
+                    узбекской кухни, душевное гостеприимство
+                    и уютная атмосфера.
+                </p>
+
+                <p>
+                    Мы стремимся, чтобы каждый гость чувствовал
+                    себя как дома, наслаждался любимыми блюдами
+                    и проводил время в хорошей компании.
+                </p>
+
+                <a href="#menu" class="primary-btn">
+                    Познакомиться с меню
+                </a>
+            </div>
+        </section>
+
+        <section class="gallery-section" id="gallery">
+            <div class="section-heading">
+                <p class="hero-subtitle">АТМОСФЕРА «ШЕШ БЕШ»</p>
+                <h2>Наша галерея</h2>
+                <p>Вкусные блюда, уютные вечера и гостеприимство</p>
+            </div>
+
+            <div class="gallery-grid">
+                <button class="gallery-item" type="button"
+                        data-full-image="{% static 'core/images/gallery-1.png' %}"
+                        aria-label="Увеличить фотографию интерьера">
+                    <img
+                        src="{% static 'core/images/gallery-1.png' %}"
+                        alt="Интерьер чайханы"
+                        loading="lazy"
+                    >
+                </button>
+
+                <button class="gallery-item" type="button"
+                        data-full-image="{% static 'core/images/gallery-2.png' %}"
+                        aria-label="Увеличить фотографию блюда">
+                    <img
+                        src="{% static 'core/images/gallery-2.png' %}"
+                        alt="Блюда узбекской кухни"
+                        loading="lazy"
+                    >
+                </button>
+
+                <button class="gallery-item" type="button"
+                        data-full-image="{% static 'core/images/gallery-3.png' %}"
+                        aria-label="Увеличить фотографию чайханы">
+                    <img
+                        src="{% static 'core/images/gallery-3.png' %}"
+                        alt="Атмосфера чайханы"
+                        loading="lazy"
+                    >
+                </button>
+            </div>
+
+            <div class="lightbox" id="gallery-lightbox"
+                role="dialog" aria-modal="true"
+                aria-label="Просмотр фотографии" hidden>
+                <button class="lightbox-close" type="button"
+                        aria-label="Закрыть фотографию">&times;</button>
+
+                <button class="lightbox-arrow lightbox-prev" type="button"
+                        aria-label="Предыдущая фотография">&#10094;</button>
+
+                <div class="lightbox-track">
+                    <img class="lightbox-image lightbox-current" src="" alt="">
+                    <img class="lightbox-image lightbox-adjacent" src="" alt="">
+                </div>
+
+                <button class="lightbox-arrow lightbox-next" type="button"
+                        aria-label="Следующая фотография">&#10095;</button>
+            </div>
         </section>
 
         <section class="reviews-section" id="reviews">
@@ -181,7 +263,41 @@
             </div>
         </section>
 
-    </main>
+        <section class="contacts-section" id="contacts">
+            <div class="section-heading">
+                <p class="hero-subtitle">МЫ ЖДЁМ ВАС</p>
+                <h2>Контакты</h2>
+                <p>Приходите провести время в уютной атмосфере</p>
+            </div>
 
+            <div class="contacts-content">
+                <div class="contact-item">
+                    <h3>Адрес</h3>
+                    <p>г. Бухара, ул. Хамза, 10</p>
+                    <p>Ориентир: старый ЦУМ</p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Телефоны</h3>
+                    <p>
+                        <a href="tel:+998553101888">+998 55 310 18 88</a>
+                    </p>
+                    <p>
+                        <a href="tel:+998914101888">+998 91 410 18 88</a>
+                    </p>
+                    <p>
+                        <a href="tel:+998914171888">+998 91 417 18 88</a>
+                    </p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>График работы</h3>
+                    <p>С понедельника по субботу с 8:00 до 17:00</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+<script src="{% static 'core/gallery.js' %}"></script>
 </body>
 </html>
