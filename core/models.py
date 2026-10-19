@@ -44,7 +44,7 @@ class Dish(models.Model):
 class Review(models.Model):
     name = models.CharField(max_length=100)
     rating = models.PositiveSmallIntegerField()
-    text = models.TextField()
+    text = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     is_approved = models.BooleanField(default=False)
 

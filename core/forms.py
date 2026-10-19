@@ -26,6 +26,10 @@ class ReviewForm(forms.ModelForm):
             }),
         }
 
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields["text"].required = False
+
     def clean_rating(self):
         rating = self.cleaned_data["rating"]
 

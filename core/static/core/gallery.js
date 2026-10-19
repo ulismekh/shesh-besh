@@ -55,16 +55,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function closeLightbox() {
-        // Закрытие всегда доступно, даже во время анимации.
         clearTimeout(animationTimer);
+
         animating = false;
         dragging = false;
+        dragX = 0;
+
         lightbox.hidden = true;
+
         currentImage.src = "";
         adjacentImage.src = "";
+
+        currentImage.style.transition = "none";
+        adjacentImage.style.transition = "none";
+        currentImage.style.transform = "translateX(0)";
+        adjacentImage.style.transform = "translateX(100%)";
+
         document.body.style.overflow = "";
 
-        if (previousFocus) previousFocus.focus();
+        if (previousFocus) {
+            previousFocus.focus();
+        }
     }
 
     function prepareAdjacent(direction) {
@@ -180,7 +191,11 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => openLightbox(index));
     });
 
-    closeButton.addEventListener("click", closeLightbox);
+    closeButton.addEventListener("pointerup", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        closeLightbox();
+    });
     prevButton.addEventListener("click", () => changeBy(1));
     nextButton.addEventListener("click", () => changeBy(-1));
   // closeButton.addEventListener("click", () => {
@@ -198,10 +213,10 @@ document.addEventListener("DOMContentLoaded", () => {
   //     changeBy(-1);
   // });
 
-    lightbox.addEventListener("touchstart", startDrag, { passive: true });
-    lightbox.addEventListener("touchmove", moveDrag, { passive: true });
-    lightbox.addEventListener("touchend", endDrag, { passive: true });
-    lightbox.addEventListener("touchcancel", endDrag, { passive: true });
+    track.addEventListener("touchstart", startDrag, { passive: true });
+    track.addEventListener("touchmove", moveDrag, { passive: true });
+    track.addEventListener("touchend", endDrag, { passive: true });
+    track.addEventListener("touchcancel", endDrag, { passive: true });
 
     lightbox.addEventListener("click", event => {
         if (event.target === lightbox) closeLightbox();

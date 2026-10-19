@@ -210,8 +210,11 @@ body {
 }
 
 .primary-btn:hover {
-    background: transparent;
-    color: #f5eee3;
+    background: #A91F1A;
+    color: #FFFFFF;
+    border-color: #A91F1A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(169, 31, 26, 0.2);
 }
 
 
@@ -377,9 +380,17 @@ body {
 }
 
 .menu-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 25px;
+    align-items: stretch;
+}
+
+.menu-item {
+    width: 280px;
+    max-width: 100%;
+    flex: 0 1 280px;
 }
 
 .menu-item {
@@ -884,7 +895,8 @@ body {
     right: 20px;
 }
 
-@media (max-width: 600px) {
+/* Стрелки скрыты на сенсорных устройствах */
+@media (hover: none) and (pointer: coarse) {
     .lightbox-arrow {
         display: none;
     }
@@ -904,4 +916,273 @@ body {
 .lightbox-current,
 .lightbox-adjacent {
     pointer-events: none;
+}
+
+/* Кнопка возврата наверх */
+.back-to-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 900;
+
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+
+    background: #D32923;
+    color: #FFFFFF;
+    font-size: 28px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(23, 17, 14, 0.25);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        background 0.2s ease,
+        visibility 0.25s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: #A91F1A;
+}
+
+.back-to-top:active {
+    transform: scale(0.92);
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid #C69B55;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .back-to-top {
+        right: 15px;
+        bottom: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 24px;
+    }
+}
+
+/* Обновлённая форма отзывов */
+.review-form {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.review-form label {
+    display: block;
+    margin-bottom: 9px;
+    color: #2b211b;
+    font-weight: 500;
+}
+
+.review-form input:not([type="radio"]),
+.review-form textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border: 1px solid #dfcdb8;
+    border-radius: 8px;
+    background: #fffdf9;
+    color: #2b211b;
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-form input:not([type="radio"]) {
+    min-height: 48px;
+}
+
+.review-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.review-form input:not([type="radio"]):focus,
+.review-form textarea:focus {
+    outline: none;
+    border-color: #C69B55;
+    box-shadow: 0 0 0 3px rgba(198, 155, 85, 0.15);
+}
+
+.review-form input::placeholder,
+.review-form textarea::placeholder {
+    color: #a59a8e;
+}
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 12px 0 20px;
+}
+
+.star-rating label {
+    margin: 0;
+    color: #c9bba9;
+    font-size: 32px;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.star-rating label:hover {
+    transform: scale(1.12);
+}
+
+.review-form button[type="submit"] {
+    min-height: 50px;
+    padding: 14px 28px;
+    border: 1px solid #D32923;
+    border-radius: 5px;
+    background: #D32923;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.review-form button[type="submit"]:hover {
+    background: #A91F1A;
+    border-color: #A91F1A;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .review-form input:not([type="radio"]),
+    .review-form textarea {
+        padding: 12px;
+    }
+
+    .review-form button[type="submit"] {
+        width: 100%;
+    }
+}
+
+/* Карта в разделе контактов */
+.contact-map {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto 20px;
+    overflow: hidden;
+    border: 1px solid #dfcdb8;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(23, 17, 14, 0.08);
+}
+
+.contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 350px;
+}
+
+.map-route-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 14px 24px;
+    background: #D32923;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.map-route-button:hover {
+    background: #A91F1A;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .contact-map iframe {
+        height: 280px;
+    }
+
+    .map-route-button {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+/* Карта располагается отдельно от карточек контактов */
+.contacts-map-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 35px auto 0;
+    text-align: center;
+}
+
+.contacts-map-section .contact-map {
+    width: 100%;
+    height: 350px;
+    margin: 0 0 20px;
+    overflow: hidden;
+    border: 1px solid #dfcdb8;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(23, 17, 14, 0.08);
+}
+
+.contacts-map-section .contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.contacts-map-section .map-route-button {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    background: #D32923;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.contacts-map-section .map-route-button:hover {
+    background: #A91F1A;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .contacts-map-section .contact-map {
+        height: 280px;
+    }
+
+    .contacts-map-section .map-route-button {
+        width: 100%;
+    }
 }

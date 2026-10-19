@@ -51,7 +51,7 @@
                 </p>
 
                 <div class="hero-buttons">
-                    <a href="#menu" class="primary-btn">
+                    <a href="#menu" class="primary-btn primary-btn-header">
                         Посмотреть меню
                     </a>
                 </div>
@@ -72,35 +72,40 @@
                     <h3>{{ category.name }}</h3>
 
                     {% if category.description %}
-                        <p>{{ category.description }}</p>
-                    {% endif %}
+                                                    <p>{{ category.description }}</p>
+                                                {% endif %}
 
-                    <div class="menu-items">
-                        {% for dish in category.dishes.all %}
-                            {% if dish.is_available %}
-                                <article class="menu-item">
-                                    {% if dish.image %}
-                                        <img
-                                            src="{{ dish.image.url }}"
-                                            alt="{{ dish.name }}"
-                                        >
-                                    {% endif %}
+                                                <div class="menu-items">
+                                                    {% for dish in category.dishes.all %}
+                                                        {% if dish.is_available %}
+                                                            <article class="menu-item">
+                                                                {% if dish.image %}
+                                                                    <img
+                                                                        src="{{ dish.image.url }}"
+                                                                        alt="{{ dish.name }}"
+                                                                        loading="lazy"
+                                                                    >
+                                                                {% else %}
+                                                                    <img
+                                                                        src="{% static 'core/images/no-image.png' %}"
+                                                                        alt="Фотография блюда скоро появится"
+                                                                        loading="lazy"
+                                                                    >
+                                                                {% endif %}
 
-                                    <h4>{{ dish.name }}</h4>
-                                    <p>{{ dish.description }}</p>
-                                    <p class="menu-price">
-                                        {{ dish.price }} сум
-                                    </p>
-                                </article>
-                            {% endif %}
-                        {% empty %}
-                            <p>В этой категории пока нет блюд.</p>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% empty %}
-                <p>Меню скоро появится.</p>
-            {% endfor %}
+                                                                <h4>{{ dish.name }}</h4>
+                                                                <p>{{ dish.description }}</p>
+                                                                <p class="menu-price">{{ dish.price }} сум</p>
+                                                            </article>
+                                                        {% endif %}
+                                                    {% empty %}
+                                                        <p>В этой категории пока нет блюд.</p>
+                                                    {% endfor %}
+                                                    </div>
+</div>
+{% empty %}
+    <p>Меню скоро появится.</p>
+{% endfor %}
         </section>
 
         <section class="about-section" id="about">
@@ -279,15 +284,9 @@
 
                 <div class="contact-item">
                     <h3>Телефоны</h3>
-                    <p>
-                        <a href="tel:+998553101888">+998 55 310 18 88</a>
-                    </p>
-                    <p>
-                        <a href="tel:+998914101888">+998 91 410 18 88</a>
-                    </p>
-                    <p>
-                        <a href="tel:+998914171888">+998 91 417 18 88</a>
-                    </p>
+                    <p><a href="tel:+998553101888">+998 55 310 18 88</a></p>
+                    <p><a href="tel:+998914101888">+998 91 410 18 88</a></p>
+                    <p><a href="tel:+998914171888">+998 91 417 18 88</a></p>
                 </div>
 
                 <div class="contact-item">
@@ -295,9 +294,48 @@
                     <p>С понедельника по субботу с 8:00 до 17:00</p>
                 </div>
             </div>
+
+            <div class="contacts-map-section">
+                <div class="contact-map">
+                    <iframe
+                        src="https://maps.google.com/maps?q=39.7654785,64.4273142&z=17&output=embed"
+                        loading="lazy"
+                        allowfullscreen
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Чайхана Шеш Беш в Бухаре">
+                    </iframe>
+                </div>
+
+                <a
+                    class="map-route-button"
+                    href="https://www.google.com/maps/dir/?api=1&destination=39.7654785,64.4273142"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Построить маршрут
+                </a>
+            </div>
         </section>
 
     </main>
+    <button class="back-to-top" id="back-to-top"
+        type="button" aria-label="Вернуться наверх"
+        title="Наверх">
+    ↑
+    </button>
 <script src="{% static 'core/gallery.js' %}"></script>
+<script>
+    const backToTop = document.getElementById("back-to-top");
+
+    window.addEventListener("scroll", () => {
+        backToTop.classList.toggle("visible", window.scrollY > 350);
+    }, { passive: true });
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+</script>
 </body>
 </html>
