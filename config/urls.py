@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from core.views import create_admin_once
+# from core.views import create_admin_once
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
-    path("__create-admin-once/", create_admin_once),
+    # path("__create-admin-once/", create_admin_once),
 ]
 
 if settings.DEBUG:

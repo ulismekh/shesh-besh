@@ -45,30 +45,30 @@ def home(request):
 
     return render(request, "core/home.html", context)
 
-import os
-import secrets
-from django.http import HttpResponse
-from django.contrib.auth import get_user_model
-from django.views.decorators.http import require_GET
+# import os
+# import secrets
+# from django.http import HttpResponse
+# from django.contrib.auth import get_user_model
+# from django.views.decorators.http import require_GET
 
 
-@require_GET
-def create_admin_once(request):
-    token = os.environ.get("CREATE_ADMIN_TOKEN", "")
-    if not token or not secrets.compare_digest(
-        request.GET.get("token", ""), token
-    ):
-        return HttpResponse("Forbidden", status=403)
+# @require_GET
+# def create_admin_once(request):
+#     token = os.environ.get("CREATE_ADMIN_TOKEN", "")
+#     if not token or not secrets.compare_digest(
+#         request.GET.get("token", ""), token
+#     ):
+#         return HttpResponse("Forbidden", status=403)
 
-    User = get_user_model()
-    username = os.environ.get("ADMIN_USERNAME", "")
-    password = os.environ.get("ADMIN_PASSWORD", "")
+#     User = get_user_model()
+#     username = os.environ.get("ADMIN_USERNAME", "")
+#     password = os.environ.get("ADMIN_PASSWORD", "")
 
-    if not username or not password:
-        return HttpResponse("Missing credentials", status=500)
+#     if not username or not password:
+#         return HttpResponse("Missing credentials", status=500)
 
-    if User.objects.filter(username=username).exists():
-        return HttpResponse("Username already exists", status=409)
+#     if User.objects.filter(username=username).exists():
+#         return HttpResponse("Username already exists", status=409)
 
-    User.objects.create_superuser(username=username, email="", password=password)
-    return HttpResponse("Admin created. Remove this endpoint immediately.")
+#     User.objects.create_superuser(username=username, email="", password=password)
+#     return HttpResponse("Admin created. Remove this endpoint immediately.")
