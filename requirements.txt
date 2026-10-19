@@ -1,0 +1,7 @@
+Django==6.1.2
+djangorestframework==3.18.3
+Pillow==12.3.0
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary

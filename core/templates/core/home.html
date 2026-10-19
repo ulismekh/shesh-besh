@@ -60,6 +60,39 @@
 
         </section>
 
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <span class="about-label">Добро пожаловать в «Шеш Беш»</span>
+
+                <h2 class="section-title">О нас</h2>
+
+                <div class="about-text">
+                    <p>
+                        Добро пожаловать в чайхану <strong>«Шеш Беш»</strong> —
+                        место, где восточное гостеприимство встречается
+                        с неповторимым вкусом национальной кухни.
+                        Здесь каждый гость окружён теплом и вниманием,
+                        а каждая трапеза превращается в приятный момент,
+                        которым хочется поделиться с близкими.
+                    </p>
+
+                    <p>
+                        Мы создаём атмосферу, в которой приятно собираться
+                        всей семьёй, встречаться с друзьями и отдыхать
+                        от повседневной суеты. Ароматные блюда, уютная
+                        обстановка и искреннее гостеприимство делают
+                        «Шеш Беш» местом, куда хочется возвращаться
+                        снова и снова.
+                    </p>
+                </div>
+
+                <div class="about-slogan">
+                    «Шеш Беш» — приходите за вкусом,
+                    оставайтесь ради атмосферы!
+                </div>
+            </div>
+        </section>
+
         <section class="menu-section" id="menu">
             <div class="section-heading">
                 <p class="hero-subtitle">НАША КУХНЯ</p>
@@ -102,34 +135,10 @@
                                                         <p>В этой категории пока нет блюд.</p>
                                                     {% endfor %}
                                                     </div>
-</div>
-{% empty %}
-    <p>Меню скоро появится.</p>
-{% endfor %}
-        </section>
-
-        <section class="about-section" id="about">
-            <div class="about-content">
-                <p class="hero-subtitle">НАША ИСТОРИЯ</p>
-
-                <h2>Больше, чем просто чайхана</h2>
-
-                <p>
-                    «Шеш Беш» — место, где встречаются традиции
-                    узбекской кухни, душевное гостеприимство
-                    и уютная атмосфера.
-                </p>
-
-                <p>
-                    Мы стремимся, чтобы каждый гость чувствовал
-                    себя как дома, наслаждался любимыми блюдами
-                    и проводил время в хорошей компании.
-                </p>
-
-                <a href="#menu" class="primary-btn">
-                    Познакомиться с меню
-                </a>
-            </div>
+                </div>
+                {% empty %}
+                    <p>Меню скоро появится.</p>
+                {% endfor %}
         </section>
 
         <section class="gallery-section" id="gallery">
@@ -191,6 +200,13 @@
         </section>
 
         <section class="reviews-section" id="reviews">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert-message" role="status">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="section-heading">
                 <p class="hero-subtitle">ВАШЕ МНЕНИЕ ВАЖНО</p>
                 <h2>Отзывы гостей</h2>
@@ -336,6 +352,23 @@
             behavior: "smooth"
         });
     });
+</script>
+<script>
+    document.querySelectorAll(".alert-message").forEach((message) => {
+        setTimeout(() => {
+            message.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+            message.style.opacity = "0";
+            message.style.transform = "translateX(30px)";
+
+            setTimeout(() => message.remove(), 400);
+        }, 4000);
+    });
+</script>
+<script>
+    if (window.location.hash === "#reviews") {
+        history.replaceState(null, "", window.location.pathname);
+        window.scrollTo(0, 0);
+    }
 </script>
 </body>
 </html>

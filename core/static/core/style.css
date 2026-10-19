@@ -1186,3 +1186,109 @@ body {
         width: 100%;
     }
 }
+
+.alert-message {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+
+    width: min(400px, calc(100% - 32px));
+    box-sizing: border-box;
+    padding: 18px 22px;
+
+    background: #f0f7e9;
+    color: #315b2a;
+    border: 1px solid #c5dfb8;
+    border-left: 5px solid #5b8c46;
+    border-radius: 10px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    font-size: 15px;
+    line-height: 1.5;
+
+    animation: notification-appear 0.35s ease-out;
+}
+
+@keyframes notification-appear {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 500px) {
+    .alert-message {
+        top: 15px;
+        right: 16px;
+    }
+}
+
+.about-section {
+    padding: 80px 24px;
+    background: #F5EEE3;
+    color: #17110e;
+}
+
+.about-content {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-label {
+    display: block;
+    margin-bottom: 12px;
+    color: #D32923;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.about-section .section-title {
+    margin-bottom: 30px;
+}
+
+.about-text {
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.about-text p {
+    margin: 0 0 20px;
+}
+
+.about-text strong {
+    color: #D32923;
+}
+
+.about-slogan {
+    max-width: 650px;
+    margin: 32px auto 0;
+    padding: 20px;
+    border-top: 2px solid #C69B55;
+    color: #A91F1A;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .about-section {
+        padding: 55px 20px;
+    }
+
+    .about-text {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .about-slogan {
+        font-size: 18px;
+    }
+}

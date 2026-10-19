@@ -2,14 +2,24 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Category, Review
 from .forms import ReviewForm
+from django.db import models
 
 
 def home(request):
     categories = (
-        Category.objects
+    Category.objects
         .filter(dishes__is_available=True)
         .distinct()
         .prefetch_related("dishes")
+        .order_by(
+            models.Case(
+                models.When(name="Салаты", then=0),
+                models.When(name="Первые блюда", then=1),
+                models.When(name="Горячие блюда", then=2),
+                default=3,
+                output_field=models.IntegerField(),
+            )
+        )
     )
 
     reviews = Review.objects.filter(is_approved=True)[:10]
