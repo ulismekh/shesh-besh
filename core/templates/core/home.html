@@ -12,7 +12,14 @@
 </head>
 
 <body>
-
+    <div id="site-loader">
+        <div class="loader-brand">SHESH-BESH</div>
+            <div class="loader-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+    </div>
     <header class="header">
         <a href="#" class="logo">
           <img src="{% static 'core/images/logo.png' %}" alt="Шеш Беш">
@@ -338,6 +345,38 @@
         title="Наверх">
     ↑
     </button>
+<script>
+    (() => {
+        const loader = document.getElementById("site-loader");
+        const hero = document.querySelector(".hero");
+
+        if (!loader || !hero) return;
+
+        const backgroundImage = getComputedStyle(hero).backgroundImage;
+        const match = backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+
+        if (!match) {
+            hideLoader();
+            return;
+        }
+
+        const image = new Image();
+
+        function hideLoader() {
+            loader.classList.add("loader-hidden");
+
+            setTimeout(() => loader.remove(), 700);
+        }
+
+        image.onload = hideLoader;
+        image.onerror = hideLoader;
+        image.src = match[1];
+
+        if (image.complete) {
+            hideLoader();
+        }
+    })();
+</script>
 <script src="{% static 'core/gallery.js' %}"></script>
 <script>
     const backToTop = document.getElementById("back-to-top");
