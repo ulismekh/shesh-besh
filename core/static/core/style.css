@@ -1361,3 +1361,43 @@ body {
         transition: none;
     }
 }
+
+.menu-prices {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #ead9c5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.menu-price-row span {
+    color: #756454;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.menu-price-row strong {
+    color: #c92820;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.menu-item .menu-prices p {
+    margin: 0;
+}
+
+.menu-price-single {
+    color: #c92820;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 16px;
+}

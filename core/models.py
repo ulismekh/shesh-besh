@@ -20,17 +20,34 @@ class Dish(models.Model):
         Category,
         on_delete=models.PROTECT,
         related_name="dishes",
+        verbose_name="Категории"
     )
-    name = models.CharField(max_length=150)
-    description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    name = models.CharField(
+        max_length=150,
+        verbose_name="Название блюда",
+    )
+    description = models.TextField(blank=True, verbose_name="Описание")
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Цена полной порции",
+    )
+
+    half_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True,
+        verbose_name="Цена половины порции",
+    )
     image = models.ImageField(
         upload_to="dishes/",
         blank=True,
         null=True,
+        verbose_name="Фотография блюда"
     )
-    is_available = models.BooleanField(default=True)
-    order = models.PositiveIntegerField(default=0)
+    is_available = models.BooleanField(default=True, verbose_name="В наличии")
+    order = models.PositiveIntegerField(default=0, verbose_name="Порядок отображения")
 
     class Meta:
         ordering = ["order", "name"]

@@ -21,22 +21,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 import os
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-local-dev-key-change-this"
+)
+
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.environ.get(
-    'ALLOWED_HOSTS',
-    'localhost,127.0.0.1'
-).split(',')
+    "ALLOWED_HOSTS",
+    "localhost,127.0.0.1"
+).split(",")
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
+    "django.contrib.humanize"
 ]
 
 MIDDLEWARE = [
@@ -111,12 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+LANGUAGE_CODE = "ru"
+TIME_ZONE = "Asia/Tashkent"
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -139,3 +142,57 @@ MAILERS = {
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+JAZZMIN_SETTINGS = {
+    "site_title": "Shesh-Besh",
+    "site_header": "Shesh-Besh",
+    "site_brand": "Шеш Беш",
+    "welcome_sign": "Панель управления чайханой",
+    "copyright": "Shesh-Besh",
+
+    "language_chooser": False,
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "order_with_respect_to": [
+        "core",
+        "auth",
+    ],
+
+    "icons": {
+        "core.Category": "fas fa-list",
+        "core.Dish": "fas fa-utensils",
+        "core.Review": "fas fa-star",
+        "auth.User": "fas fa-users",
+        "auth.Group": "fas fa-user-shield",
+    },
+    "site_logo": "core/images/logo.png",
+    "login_logo": "core/images/logo.png",
+    "site_icon": "core/images/favicon.png",
+    "custom_css": "core/css/admin-custom.css",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",
+    "navbar_small_text": False,
+    "sidebar_nav_small_text": False,
+    "sidebar_nav_compact_style": True,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "accent": "danger",
+
+    "navbar": "navbar-dark",
+    "navbar_fixed": True,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-danger",
+    "brand_colour": "navbar-danger",
+
+    "button_classes": {
+        "primary": "btn-danger",
+        "secondary": "btn-secondary",
+        "success": "btn-success",
+        "danger": "btn-danger",
+        "warning": "btn-warning",
+        "info": "btn-info",
+    },
+}

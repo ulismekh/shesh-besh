@@ -1,0 +1,39 @@
+#jazzy-navbar .nav-link {
+    opacity: 1 !important;
+}
+
+/* Подсветка при наведении */
+#jazzy-navbar .nav-link:hover,
+#jazzy-navbar button:hover {
+    background-color: #c92820 !important;
+    color: #ffffff !important;
+}
+
+/* Кнопка сворачивания бокового меню */
+#jazzy-navbar [data-widget="pushmenu"] {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+/* Иконка профиля */
+#jazzy-navbar .user-menu > a {
+    color: #ffffff !important;
+}
+
+#jazzy-navbar.app-header.navbar {
+    background: #343a40 !important;
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+}
+
+#jazzy-navbar.app-header.navbar a,
+#jazzy-navbar.app-header.navbar button,
+#jazzy-navbar.app-header.navbar i {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+#jazzy-navbar [data-widget="pushmenu"]:hover,
+#jazzy-navbar a:hover {
+    background-color: #c92820 !important;
+}

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static humanize %}
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -9,6 +9,7 @@
     <title>Шеш Беш — чайхана в Бухаре</title>
 
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'core/images/favicon.png' %}">
 </head>
 
 <body>
@@ -135,13 +136,28 @@
 
                                                                 <h4>{{ dish.name }}</h4>
                                                                 <p>{{ dish.description }}</p>
-                                                                <p class="menu-price">{{ dish.price }} сум</p>
+                                                                <div class="menu-prices">
+                                                                    {% if dish.half_price %}
+                                                                        <div class="menu-price-row">
+                                                                            <span>Полная порция</span>
+                                                                            <strong>{{ dish.price|floatformat:"0"|intcomma }} сум</strong>
+                                                                        </div>
+                                                                        <div class="menu-price-row">
+                                                                            <span>Полпорции</span>
+                                                                            <strong>{{ dish.half_price|floatformat:"0"|intcomma }} сум</strong>
+                                                                        </div>
+                                                                    {% else %}
+                                                                        <div class="menu-price-single">
+                                                                            {{ dish.price|floatformat:"0" }} сум
+                                                                        </div>
+                                                                    {% endif %}
+                                                                </div>
                                                             </article>
                                                         {% endif %}
                                                     {% empty %}
                                                         <p>В этой категории пока нет блюд.</p>
                                                     {% endfor %}
-                                                    </div>
+                                                </div>
                 </div>
                 {% empty %}
                     <p>Меню скоро появится.</p>
