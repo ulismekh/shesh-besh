@@ -196,3 +196,8 @@ JAZZMIN_UI_TWEAKS = {
         "info": "btn-info",
     },
 }
+
+import os
+
+print("DATABASE PATH:", DATABASES["default"]["NAME"])
+print("DATABASE EXISTS:", os.path.exists(DATABASES["default"]["NAME"]))
