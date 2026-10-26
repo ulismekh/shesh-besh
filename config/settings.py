@@ -27,7 +27,7 @@ import os
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = os.environ.get(
     "ALLOWED_HOSTS",
@@ -36,9 +36,26 @@ ALLOWED_HOSTS = os.environ.get(
 
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
-
 SECURE_SSL_REDIRECT = not DEBUG
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# SECRET_KEY = os.environ.get(
+#     "SECRET_KEY",
+#     "django-insecure-local-dev-key-change-me"
+# )
+
+# DEBUG = os.environ.get("DEBUG", "False") == "True"
+
+# ALLOWED_HOSTS = os.environ.get(
+#     "ALLOWED_HOSTS",
+#     "localhost,127.0.0.1"
+# ).split(",")
+
+# CSRF_COOKIE_SECURE = not DEBUG
+# SESSION_COOKIE_SECURE = not DEBUG
+
+# SECURE_SSL_REDIRECT = not DEBUG
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 
@@ -205,3 +222,5 @@ import os
 
 print("DATABASE PATH:", DATABASES["default"]["NAME"])
 print("DATABASE EXISTS:", os.path.exists(DATABASES["default"]["NAME"]))
+
+SECURE_HSTS_SECONDS = 3600
